@@ -1,0 +1,7 @@
+{
+  "title": "城市基础信息",
+  "cities": [
+    { "name": "北京", "province": "北京市", "climate": "温带季风气候，四季分明" },
+    { "name": "广州", "province": "广东省", "climate": "亚热带季风气候，温暖多雨" }
+  ]
+}

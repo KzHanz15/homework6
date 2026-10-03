@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城市天气数据看板</title>
+  <link href="../libs/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .chart-box { height: 340px; }
+    #status { display: none; }
+    .btn-season.active { background-color: #0d6efd; color: #fff; }
+  </style>
+</head>
+<body class="container py-4">
+  <header>
+    <h1 class="h3">城市天气数据看板</h1>
+    <p class="text-muted" id="sub-title">数据来源：课程示例气候数据集</p>
+  </header>
+  <p id="status" class="alert alert-warning"></p>
+
+  <section class="row g-3 mb-4" id="cards"></section>
+
+  <section class="mb-4">
+    <h2 class="h6">按季节筛选（jQuery交互）</h2>
+    <div id="season-btns" class="btn-group" role="group">
+      <button type="button" class="btn btn-sm btn-outline-primary btn-season active" data-season="all">全年</button>
+      <button type="button" class="btn btn-sm btn-outline-primary btn-season" data-season="spring">春季(3-5月)</button>
+      <button type="button" class="btn btn-sm btn-outline-primary btn-season" data-season="summer">夏季(6-8月)</button>
+      <button type="button" class="btn btn-sm btn-outline-primary btn-season" data-season="autumn">秋季(9-11月)</button>
+      <button type="button" class="btn btn-sm btn-outline-primary btn-season" data-season="winter">冬季(12-2月)</button>
+    </div>
+  </section>
+
+  <section class="row g-3 mb-4">
+    <div class="col-lg-6">
+      <h2 class="h5">月降水量对比（ECharts柱状图 · 单位：mm）</h2>
+      <div id="bar-chart" class="chart-box"></div>
+      <p class="small text-muted">点击柱子的某个月份，折线图会同步高亮该月数据点（图表联动）</p>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="h5">月平均气温趋势（Chart.js折线图 · 单位：℃）</h2>
+      <div class="chart-box"><canvas id="line-chart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="row g-3 mb-4">
+    <div class="col-lg-6">
+      <h2 class="h5">降水量占比（ECharts饼图 · 单位：%）</h2>
+      <div id="pie-chart" class="chart-box"></div>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="h5">并行加载研究（Promise.all 计时对比）</h2>
+      <table class="table table-sm table-bordered">
+        <thead>
+          <tr><th>加载方式</th><th>总耗时(ms)</th></tr>
+        </thead>
+        <tbody id="timing-body">
+          <tr><td>并行加载两份JSON</td><td class="timing-parallel">—</td></tr>
+          <tr><td>串行加载两份JSON</td><td class="timing-serial">—</td></tr>
+        </tbody>
+      </table>
+      <p class="small text-muted" id="timing-note"></p>
+    </div>
+  </section>
+
+  <script src="../libs/jquery-3.7.1.min.js"></script>
+  <script src="../libs/bootstrap.bundle.min.js"></script>
+  <script src="../libs/echarts.min.js"></script>
+  <script src="../libs/chart.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
